@@ -1,39 +1,47 @@
 export interface Project {
-  id: string
-  title: string
-  description: string
-  technologies: string[]
-  image: string
-  liveUrl: string
-  githubUrl: string
+  id: string;
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  liveUrl?: string;      // Made optional in case some projects don't have live links
+  githubUrl?: string;
 }
 
 export const projects: Project[] = [
   {
     id: '1',
-    title: 'E-Commerce Platform',
-    description: 'A full-featured e-commerce platform with cart functionality, payment processing, and admin dashboard.',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PostgreSQL', 'Stripe'],
-    image: '/projects/ecommerce.jpg',
-    liveUrl: 'https://ecommerce-demo.com',
-    githubUrl: 'https://github.com/Adam151997/ecommerce',
+    title: 'Y-ERP',
+    description: 'Agentic ERP system designed for SMBs to streamline and automate workflows across Sales, Customer Success, HR, Marketing, Finance, and Operations. Leverages AI agents to enhance efficiency and decision-making.',
+    technologies: [
+      'Next.js',
+      'TypeScript',
+      'React',
+      'Tailwind CSS',
+      'Supabase',
+      'Vercel',
+      'Clerk',
+      'Trigger.dev',
+      'Gemini AI'
+    ],
+    image: '/projects/y-erp.jpg',
+    liveUrl: 'https://y-erp.co',
+    githubUrl: 'https://github.com/Adam151997/Y-CRM'
   },
   {
     id: '2',
-    title: 'Task Management App',
-    description: 'Collaborative task management application with real-time updates, Kanban boards, and team features.',
-    technologies: ['React', 'Node.js', 'Socket.io', 'MongoDB', 'TypeScript'],
-    image: '/projects/taskmanager.jpg',
-    liveUrl: 'https://taskmanager-demo.com',
-    githubUrl: 'https://github.com/Adam151997/taskmanager',
-  },
-  {
-    id: '3',
-    title: 'Weather Dashboard',
-    description: 'Beautiful weather dashboard with forecasts, maps, and historical data visualization.',
-    technologies: ['React', 'D3.js', 'OpenWeather API', 'Tailwind CSS'],
-    image: '/projects/weather.jpg',
-    liveUrl: 'https://weather-demo.com',
-    githubUrl: 'https://github.com/Adam151997/weather',
-  },
-]
+    title: 'L2B - Business Intelligence Database',
+    description: 'Modern Business Intelligence platform containing over 1 million public business records across 1,000+ industries in the USA. Provides powerful data exploration and insights for market research and lead generation.',
+    technologies: [
+      'Next.js',
+      'Python',
+      'PostgreSQL',
+      'JavaScript',
+      'HTML',
+      'CSS'
+    ],
+    image: '/projects/l2b.jpg',
+    liveUrl: 'https://l2b-20-bi-frontend.up.railway.app/',
+    githubUrl: 'https://github.com/Adam151997/l2b-2.0'
+  }
+];

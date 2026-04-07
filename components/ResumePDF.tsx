@@ -126,14 +126,14 @@ const PDFDocument = () => (
           <View key={exp.id} style={styles.item}>
             <View style={styles.itemHeader}>
               <View>
-                <Text style={styles.itemTitle}>{exp.title}</Text>
+                <Text style={styles.itemTitle}>{exp.position}</Text>
                 <Text style={styles.itemSubtitle}>{exp.company} | {exp.location}</Text>
               </View>
               <Text style={styles.itemDate}>
                 {exp.startDate} - {exp.endDate || 'Present'}
               </Text>
             </View>
-            <Text style={styles.description}>{exp.description}</Text>
+            <Text style={styles.description}>{Array.isArray(exp.description) ? exp.description.join('\n') : exp.description}</Text>
             <Text style={styles.description}>Technologies: {exp.technologies.join(', ')}</Text>
           </View>
         ))}
