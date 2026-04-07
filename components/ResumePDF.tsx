@@ -126,7 +126,7 @@ const PDFDocument = () => (
           <View key={exp.id} style={styles.item}>
             <View style={styles.itemHeader}>
               <View>
-                <Text style={styles.itemTitle}>{exp.role}</Text>
+                <Text style={styles.itemTitle}>{exp.title}</Text>
                 <Text style={styles.itemSubtitle}>{exp.company} | {exp.location}</Text>
               </View>
               <Text style={styles.itemDate}>

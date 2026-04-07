@@ -1,7 +1,8 @@
+// Using explicit typing - make sure this matches your data structure
 export interface Experience {
   id: string
+  title: string
   company: string
-  role: string
   location: string
   startDate: string
   endDate: string | null
@@ -9,11 +10,12 @@ export interface Experience {
   technologies: string[]
 }
 
-export const experiences: Experience[] = [
+// Type is inferred from the data below - no explicit interface needed
+export const experiences = [
   {
     id: '1',
+    title: 'Senior Software Developer',
     company: 'TechCorp Inc.',
-    role: 'Senior Software Developer',
     location: 'San Francisco, CA',
     startDate: '2023-01',
     endDate: null,
@@ -22,8 +24,8 @@ export const experiences: Experience[] = [
   },
   {
     id: '2',
+    title: 'Full Stack Developer',
     company: 'StartupXYZ',
-    role: 'Full Stack Developer',
     location: 'Remote',
     startDate: '2021-06',
     endDate: '2022-12',
@@ -32,12 +34,12 @@ export const experiences: Experience[] = [
   },
   {
     id: '3',
+    title: 'Junior Developer',
     company: 'WebAgency Co.',
-    role: 'Junior Developer',
     location: 'Los Angeles, CA',
     startDate: '2020-03',
     endDate: '2021-05',
     description: 'Developed responsive websites and web applications for various clients. Collaborated with design team to implement pixel-perfect interfaces.',
     technologies: ['JavaScript', 'HTML', 'CSS', 'PHP', 'MySQL'],
   },
-]
+] as const

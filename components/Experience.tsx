@@ -41,7 +41,7 @@ export default function Experience() {
                   index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
                 }`}>
                   <div className="bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-colors">
-                    <h3 className="text-lg font-semibold mb-1">{exp.role}</h3>
+                    <h3 className="text-lg font-semibold mb-1">{exp.title}</h3>
                     <p className="text-primary font-medium mb-2">{exp.company}</p>
                     
                     <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
