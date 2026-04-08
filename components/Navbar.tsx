@@ -64,9 +64,9 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <Link
           href="/"
-          className="text-xl font-bold text-gradient"
+          className="text-xl font-bold text-foreground hover:text-emerald-500 transition-colors"
         >
-          AD
+          Adham Ayoub
         </Link>
 
         {/* Desktop Navigation */}
