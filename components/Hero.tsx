@@ -120,18 +120,18 @@ export default function Hero() {
           </p>
         </motion.div>
 
-        {/* Name - big bold with emerald accent */}
+        {/* Name - big bold - adapts to light/dark mode */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-5xl md:text-7xl font-bold mb-6"
         >
-          <span className="text-white">Adham </span>
-          <span className="text-emerald-400">Ayoub</span>
+          <span className="text-foreground dark:text-white">Adham </span>
+          <span className="text-emerald-500 dark:text-emerald-400">Ayoub</span>
         </motion.h1>
 
-        {/* Typewriter title */}
+        {/* Typewriter title - adapts to light/dark mode */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -139,10 +139,10 @@ export default function Hero() {
           className="h-10 md:h-12 mb-6"
         >
           <h2 className="text-2xl md:text-3xl text-muted-foreground">
-            <span className="text-white">{displayText}</span>
+            <span className="text-foreground dark:text-white">{displayText}</span>
             <motion.span 
               animate={{ opacity: showCursor ? 1 : 0 }}
-              className="inline-block w-[3px] h-6 md:h-8 bg-emerald-400 ml-1 align-middle"
+              className="inline-block w-[3px] h-6 md:h-8 bg-emerald-500 dark:bg-emerald-400 ml-1 align-middle"
             />
           </h2>
         </motion.div>
@@ -154,7 +154,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed text-lg"
         >
-          {profile.bio}
+          Results-driven Senior Business Development Executive with extensive global experience across North America, Europe, Africa, GCC, Australia, and APAC. Passionate about using data analytics and AI tools to uncover growth opportunities, build meaningful client relationships, and accelerate revenue. Proven ability to consistently exceed sales targets, develop effective go-to-market strategies, and implement AI-powered workflows that significantly boost efficiency and performance.
         </motion.p>
 
         {/* Social icons */}

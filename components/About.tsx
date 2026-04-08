@@ -25,10 +25,7 @@ export default function About() {
             className="md:col-span-2"
           >
             <p className="text-muted-foreground leading-relaxed mb-6">
-              {profile.bio}
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              I specialize in building modern web applications with a focus on user experience, performance, and clean code. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or writing technical articles.
+              Dynamic Senior Business Development and Sales professional with extensive global experience across North America, Europe, Africa, GCC, Australia, and APAC. Passionate about leveraging data analysis and AI tools to drive strategic growth, identify high-potential opportunities, and build strong client relationships. Proven track record in exceeding sales targets, executing effective go-to-market strategies, and orchestrating AI-powered workflows to maximize efficiency and results.
             </p>
             <div className="flex gap-4">
               <DownloadCV />
