@@ -36,7 +36,7 @@ export default function Projects() {
           Projects
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 justify-items-center">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -44,7 +44,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all hover:shadow-lg"
+              className="group bg-card border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-all hover:shadow-lg w-full max-w-md"
             >
               {/* Project Image Placeholder */}
               <div className="h-48 bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center">

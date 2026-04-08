@@ -8,166 +8,253 @@ import { certifications } from '@/data/certifications'
 
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
+    flexDirection: 'row',
     fontFamily: 'Helvetica',
     fontSize: 10,
-    lineHeight: 1.5,
+    lineHeight: 1.4,
   },
-  header: {
-    marginBottom: 20,
+  // Left Sidebar (35%)
+  sidebar: {
+    width: '35%',
+    backgroundColor: '#1e293b',
+    padding: 20,
+    height: '100%',
   },
-  name: {
-    fontSize: 24,
+  // Right Main Area (65%)
+  main: {
+    width: '65%',
+    padding: 25,
+    backgroundColor: '#ffffff',
+    height: '100%',
+  },
+  // Sidebar Styles
+  sidebarName: {
+    fontSize: 22,
     fontWeight: 'bold',
+    color: '#ffffff',
     marginBottom: 4,
   },
-  title: {
-    fontSize: 14,
-    color: '#444',
+  sidebarTitle: {
+    fontSize: 11,
+    color: '#10b981',
+    marginBottom: 20,
+  },
+  sidebarSection: {
+    marginBottom: 18,
+  },
+  sidebarSectionTitle: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 10,
+    paddingBottom: 4,
+    borderBottom: '1 dashed #475569',
+  },
+  contactItem: {
+    fontSize: 9,
+    color: '#cbd5e1',
+    marginBottom: 6,
+  },
+  skillItem: {
+    fontSize: 9,
+    color: '#cbd5e1',
+    marginBottom: 4,
+    paddingLeft: 8,
+  },
+  // Main Area Styles
+  mainHeader: {
+    marginBottom: 15,
+  },
+  mainName: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#1e293b',
+    marginBottom: 3,
+  },
+  mainTitle: {
+    fontSize: 12,
+    color: '#10b981',
     marginBottom: 8,
   },
-  contact: {
+  summaryText: {
     fontSize: 9,
-    color: '#666',
+    color: '#475569',
+    textAlign: 'justify',
+    lineHeight: 1.5,
   },
   section: {
-    marginBottom: 16,
+    marginBottom: 15,
   },
   sectionTitle: {
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: 'bold',
-    marginBottom: 8,
+    color: '#1e293b',
+    marginBottom: 10,
     paddingBottom: 4,
-    borderBottom: '1 solid #ddd',
-    color: '#1a1a1a',
+    borderBottom: '1 dashed #cbd5e1',
   },
-  item: {
-    marginBottom: 8,
+  experienceItem: {
+    marginBottom: 12,
   },
-  itemHeader: {
+  expHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 2,
+    alignItems: 'center',
+    marginBottom: 3,
   },
-  itemTitle: {
-    fontWeight: 'bold',
-    fontSize: 11,
-  },
-  itemSubtitle: {
-    color: '#444',
+  expTitle: {
     fontSize: 10,
+    fontWeight: 'bold',
+    color: '#1e293b',
   },
-  itemDate: {
-    fontSize: 9,
-    color: '#666',
+  expDate: {
+    fontSize: 8,
+    color: '#64748b',
   },
-  description: {
+  expCompany: {
     fontSize: 9,
-    color: '#555',
-    marginTop: 4,
+    color: '#10b981',
+    marginBottom: 4,
+  },
+  expDescription: {
+    fontSize: 8,
+    color: '#475569',
     textAlign: 'justify',
   },
-  skillsContainer: {
+  techContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 6,
-  },
-  skill: {
-    fontSize: 9,
-    backgroundColor: '#f0f0f0',
-    padding: '4 8',
-    borderRadius: 3,
-  },
-  projectLinks: {
-    fontSize: 9,
-    color: '#0066cc',
     marginTop: 4,
   },
-  certBadge: {
+  techItem: {
+    fontSize: 7,
+    backgroundColor: '#f1f5f9',
+    color: '#64748b',
+    padding: '2 6',
+    marginRight: 4,
+    marginBottom: 2,
+    borderRadius: 2,
+  },
+  certItem: {
+    marginBottom: 8,
+  },
+  certName: {
     fontSize: 9,
-    padding: '4 8',
-    backgroundColor: '#e8f4f8',
-    borderRadius: 3,
+    fontWeight: 'bold',
+    color: '#1e293b',
+  },
+  certIssuer: {
+    fontSize: 8,
+    color: '#64748b',
+  },
+  projectItem: {
+    marginBottom: 10,
+    paddingLeft: 10,
+    borderLeft: '2 solid #10b981',
+  },
+  projectTitle: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#1e293b',
+  },
+  projectDesc: {
+    fontSize: 8,
+    color: '#475569',
+    marginTop: 2,
   },
 })
 
 const PDFDocument = () => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.name}>{profile.name}</Text>
-        <Text style={styles.title}>{profile.title}</Text>
-        <Text style={styles.contact}>
-          {profile.email} | {profile.phone} | {profile.location} | {profile.linkedin}
-        </Text>
-      </View>
+      {/* Left Sidebar - Dark Background */}
+      <View style={styles.sidebar}>
+        {/* Name & Title */}
+        <View style={{ marginBottom: 25 }}>
+          <Text style={styles.sidebarName}>{profile.name}</Text>
+          <Text style={styles.sidebarTitle}>{profile.title}</Text>
+        </View>
 
-      {/* Summary */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Summary</Text>
-        <Text style={styles.description}>{profile.bio}</Text>
-      </View>
+        {/* Contact Info */}
+        <View style={styles.sidebarSection}>
+          <Text style={styles.sidebarSectionTitle}>Contact</Text>
+          <Text style={styles.contactItem}>{profile.email}</Text>
+          <Text style={styles.contactItem}>{profile.phone}</Text>
+          <Text style={styles.contactItem}>{profile.location}</Text>
+          <Text style={styles.contactItem}>{profile.linkedin}</Text>
+        </View>
 
-      {/* Skills */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Skills</Text>
-        <View style={styles.skillsContainer}>
-          {skills.map((skill) => (
-            <Text key={skill} style={styles.skill}>{skill}</Text>
+        {/* Skills */}
+        <View style={styles.sidebarSection}>
+          <Text style={styles.sidebarSectionTitle}>Skills</Text>
+          {skills.map((skill, index) => (
+            <Text key={index} style={styles.skillItem}>• {skill}</Text>
           ))}
         </View>
       </View>
 
-      {/* Experience */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Experience</Text>
-        {experiences.map((exp) => (
-          <View key={exp.id} style={styles.item}>
-            <View style={styles.itemHeader}>
-              <View>
-                <Text style={styles.itemTitle}>{exp.position}</Text>
-                <Text style={styles.itemSubtitle}>{exp.company} | {exp.location}</Text>
+      {/* Right Main Area - White Background */}
+      <View style={styles.main}>
+        {/* Summary */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Professional Summary</Text>
+          <Text style={styles.summaryText}>{profile.bio}</Text>
+        </View>
+
+        {/* Experience */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Experience</Text>
+          {experiences.map((exp) => (
+            <View key={exp.id} style={styles.experienceItem}>
+              <View style={styles.expHeader}>
+                <Text style={styles.expTitle}>{exp.position}</Text>
+                <Text style={styles.expDate}>{exp.startDate} - {exp.endDate || 'Present'}</Text>
               </View>
-              <Text style={styles.itemDate}>
-                {exp.startDate} - {exp.endDate || 'Present'}
-              </Text>
+              <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
+              {Array.isArray(exp.description) ? (
+                <View>
+                  {exp.description.slice(0, 2).map((desc, i) => (
+                    <Text key={i} style={styles.expDescription}>• {desc}</Text>
+                  ))}
+                </View>
+              ) : (
+                <Text style={styles.expDescription}>{exp.description}</Text>
+              )}
+              <View style={styles.techContainer}>
+                {exp.technologies.slice(0, 4).map((tech, i) => (
+                  <Text key={i} style={styles.techItem}>{tech}</Text>
+                ))}
+              </View>
             </View>
-            <Text style={styles.description}>{Array.isArray(exp.description) ? exp.description.join('\n') : exp.description}</Text>
-            <Text style={styles.description}>Technologies: {exp.technologies.join(', ')}</Text>
-          </View>
-        ))}
-      </View>
+          ))}
+        </View>
 
-      {/* Projects */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Projects</Text>
-        {projects.map((project) => (
-          <View key={project.id} style={styles.item}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>{project.title}</Text>
-            </View>
-            <Text style={styles.description}>{project.description}</Text>
-            <Text style={styles.projectLinks}>
-              Tech: {project.technologies.join(', ')} | {project.githubUrl}
-            </Text>
+        {/* Certifications */}
+        {certifications && certifications.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Certifications</Text>
+            {certifications.slice(0, 3).map((cert) => (
+              <View key={cert.id} style={styles.certItem}>
+                <Text style={styles.certName}>{cert.name}</Text>
+                <Text style={styles.certIssuer}>{cert.issuer} | {cert.date}</Text>
+              </View>
+            ))}
           </View>
-        ))}
-      </View>
+        )}
 
-      {/* Certifications */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Certifications</Text>
-        {certifications.map((cert) => (
-          <View key={cert.id} style={styles.item}>
-            <View style={styles.itemHeader}>
-              <Text style={styles.itemTitle}>{cert.name}</Text>
-              <Text style={styles.itemDate}>{cert.date}</Text>
-            </View>
-            <Text style={styles.itemSubtitle}>{cert.issuer}</Text>
-            <Text style={styles.description}>ID: {cert.credentialId}</Text>
+        {/* Featured Projects */}
+        {projects && projects.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Featured Projects</Text>
+            {projects.slice(0, 2).map((project) => (
+              <View key={project.id} style={styles.projectItem}>
+                <Text style={styles.projectTitle}>{project.title}</Text>
+                <Text style={styles.projectDesc}>{project.description}</Text>
+                <Text style={styles.expDescription}>Tech: {project.technologies.slice(0, 3).join(', ')}</Text>
+              </View>
+            ))}
           </View>
-        ))}
+        )}
       </View>
     </Page>
   </Document>

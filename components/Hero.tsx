@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowDown, Mail } from 'lucide-react'
 import { profile } from '@/data/profile'
@@ -43,43 +44,131 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 )
 
+const titles = [
+  'Senior Business Development Executive',
+  'AI Creator'
+]
+
 export default function Hero() {
+  const [displayText, setDisplayText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isTyping, setIsTyping] = useState(true)
+  const [showCursor, setShowCursor] = useState(true)
+
+  useEffect(() => {
+    const currentTitle = titles[currentIndex]
+    
+    if (isTyping) {
+      if (displayText.length < currentTitle.length) {
+        const timeout = setTimeout(() => {
+          setDisplayText(currentTitle.slice(0, displayText.length + 1))
+        }, 80)
+        return () => clearTimeout(timeout)
+      } else {
+        const timeout = setTimeout(() => {
+          setIsTyping(false)
+        }, 2000)
+        return () => clearTimeout(timeout)
+      }
+    } else {
+      if (displayText.length > 0) {
+        const timeout = setTimeout(() => {
+          setDisplayText(displayText.slice(0, -1))
+        }, 40)
+        return () => clearTimeout(timeout)
+      } else {
+        setCurrentIndex((prev) => (prev + 1) % titles.length)
+        setIsTyping(true)
+      }
+    }
+  }, [displayText, isTyping, currentIndex])
+
+  // Cursor blink effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowCursor((prev) => !prev)
+    }, 500)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
+      {/* Dynamic dark background with gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-slate-900/50 to-background" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(16,185,129,0.08),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(6,95,70,0.06),transparent_50%)]" />
+      
+      {/* Animated grid pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }} 
+      />
       
       <div className="max-w-4xl mx-auto px-6 py-32 relative z-10 text-center">
+        {/* Hello I'm line - immediate */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="mb-2"
         >
-          <p className="text-primary font-medium mb-4 tracking-wider uppercase text-sm">
+          <p className="text-emerald-400 font-medium tracking-wider uppercase text-sm">
             Hello, I&apos;m
-          </p>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            <span className="text-gradient">{profile.name}</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            {profile.title}
-          </p>
-          <p className="text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
-            {profile.bio}
           </p>
         </motion.div>
 
+        {/* Name - big bold with emerald accent */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-5xl md:text-7xl font-bold mb-6"
+        >
+          <span className="text-white">Adham </span>
+          <span className="text-emerald-400">Ayoub</span>
+        </motion.h1>
+
+        {/* Typewriter title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-center justify-center gap-6 mb-16"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="h-10 md:h-12 mb-6"
+        >
+          <h2 className="text-2xl md:text-3xl text-muted-foreground">
+            <span className="text-white">{displayText}</span>
+            <motion.span 
+              animate={{ opacity: showCursor ? 1 : 0 }}
+              className="inline-block w-[3px] h-6 md:h-8 bg-emerald-400 ml-1 align-middle"
+            />
+          </h2>
+        </motion.div>
+
+        {/* Bio paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed text-lg"
+        >
+          {profile.bio}
+        </motion.p>
+
+        {/* Social icons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="flex items-center justify-center gap-4 mb-12"
         >
           <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+            className="p-3 rounded-full bg-slate-800/50 hover:bg-emerald-500/20 hover:border-emerald-500/50 border border-slate-700 hover:text-emerald-400 transition-all"
             aria-label="GitHub"
           >
             <GithubIcon className="w-5 h-5" />
@@ -88,35 +177,37 @@ export default function Hero() {
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-3 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+            className="p-3 rounded-full bg-slate-800/50 hover:bg-emerald-500/20 hover:border-emerald-500/50 border border-slate-700 hover:text-emerald-400 transition-all"
             aria-label="LinkedIn"
           >
             <LinkedinIcon className="w-5 h-5" />
           </a>
           <a
             href={`mailto:${profile.email}`}
-            className="p-3 rounded-full bg-secondary hover:bg-secondary/80 transition-colors"
+            className="p-3 rounded-full bg-slate-800/50 hover:bg-emerald-500/20 hover:border-emerald-500/50 border border-slate-700 hover:text-emerald-400 transition-all"
             aria-label="Email"
           >
             <Mail className="w-5 h-5" />
           </a>
         </motion.div>
 
+        {/* CTA Button */}
         <motion.a
           href="#contact"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="inline-flex items-center gap-2 px-8 py-4 bg-emerald-600 text-white rounded-lg font-medium hover:bg-emerald-500 transition-all hover:shadow-lg hover:shadow-emerald-500/20"
         >
           Get In Touch
         </motion.a>
       </div>
 
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
+        transition={{ delay: 1.2, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
       >
         <a
