@@ -89,14 +89,9 @@ const styles = StyleSheet.create({
     lineHeight: 1.4,
   },
   experienceItem: {
-    marginBottom: 16,
+    marginBottom: 20,
   },
-  expHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 6,
-  },
+
   expTitle: {
     fontSize: 9,
     fontWeight: 'bold',
@@ -116,13 +111,14 @@ const styles = StyleSheet.create({
     color: '#059669',
     fontWeight: 'medium',
     lineHeight: 1.4,
+    marginBottom: 6,
   },
   expDesc: {
     fontSize: 7,
     color: '#475569',
     lineHeight: 1.4,
     textAlign: 'justify',
-    marginBottom: 4,
+    marginBottom: 6,
   },
   certItem: {
     marginBottom: 10,
@@ -138,6 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 7,
     color: '#64748b',
     lineHeight: 1.4,
+    marginTop: 4,
   },
   projectItem: {
     marginBottom: 14,
@@ -160,6 +157,8 @@ const styles = StyleSheet.create({
     color: '#475569',
     lineHeight: 1.6,
     textAlign: 'justify',
+    marginTop: 3,
+    marginBottom: 4,
   },
   projectTech: {
     fontSize: 6,
@@ -213,12 +212,12 @@ const PDFDocument = () => (
           <Text style={styles.sectionTitle}>Experience</Text>
           {experiences.map((exp) => (
             <View key={exp.id} style={styles.experienceItem}>
-              {/* Combine position, date, company into single Text with line breaks */}
+              {/* Position and date on one line */}
               <Text style={styles.expTitle}>
                 {exp.position}  {exp.startDate} - {exp.endDate || 'Present'}
-                {'\\n'}
-                <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
               </Text>
+              {/* Company on next line */}
+              <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
               {/* Bullet points - each as separate Text with bullet character */}
               {Array.isArray(exp.description) ? (
                 exp.description.map((desc, i) => (
@@ -236,11 +235,8 @@ const PDFDocument = () => (
             <Text style={styles.sectionTitle}>Certifications</Text>
             {certifications.map((cert) => (
               <View key={cert.id} style={styles.certItem}>
-                <Text style={styles.certName}>
-                  {cert.name}
-                  {'\\n'}
-                  <Text style={styles.certIssuer}>{cert.issuer} | {cert.date}</Text>
-                </Text>
+                <Text style={styles.certName}>{cert.name}</Text>
+                <Text style={styles.certIssuer}>{cert.issuer} | {cert.date}</Text>
               </View>
             ))}
           </View>
@@ -251,11 +247,8 @@ const PDFDocument = () => (
             <Text style={styles.sectionTitle}>Featured Projects</Text>
             {projects.map((project) => (
               <View key={project.id} style={styles.projectItem}>
-                <Text style={styles.projectTitle}>
-                  {project.title}
-                  {'\\n'}
-                  <Text style={styles.projectDesc}>{project.description}</Text>
-                </Text>
+                <Text style={styles.projectTitle}>{project.title}</Text>
+                <Text style={styles.projectDesc}>{project.description}</Text>
                 {project.technologies.length > 0 && (
                   <Text style={styles.projectTech}>Technologies: {project.technologies.join(', ')}</Text>
                 )}
