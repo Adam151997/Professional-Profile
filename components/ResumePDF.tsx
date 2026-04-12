@@ -71,31 +71,31 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: '#475569',
     textAlign: 'justify',
-    lineHeight: 1.4,
-    marginBottom: 8,
+    lineHeight: 1.5,
+    marginBottom: 12,
   },
   section: {
-    marginBottom: 24,
+    marginBottom: 28,
   },
   sectionTitle: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 14,
-    paddingBottom: 8,
+    marginBottom: 16,
+    paddingBottom: 10,
     borderBottom: '1 solid #e2e8f0',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
-    lineHeight: 1.3,
+    lineHeight: 1.4,
   },
   experienceItem: {
-    marginBottom: 14,
+    marginBottom: 16,
   },
   expHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 4,
+    marginBottom: 6,
   },
   expTitle: {
     fontSize: 9,
@@ -114,14 +114,20 @@ const styles = StyleSheet.create({
   expCompany: {
     fontSize: 8,
     color: '#059669',
-    marginBottom: 4,
+    marginBottom: 6,
     fontWeight: 'medium',
-    lineHeight: 1.3,
+    lineHeight: 1.4,
   },
   expDesc: {
     fontSize: 7,
     color: '#475569',
     lineHeight: 1.4,
+    textAlign: 'justify',
+    flexWrap: 'wrap',
+  },
+  bulletItem: {
+    marginBottom: 6,
+    flexDirection: 'row',
   },
   certItem: {
     marginBottom: 10,
@@ -130,22 +136,23 @@ const styles = StyleSheet.create({
     fontSize: 8,
     fontWeight: 'bold',
     color: '#0f172a',
-    lineHeight: 1.3,
-    marginBottom: 2,
+    lineHeight: 1.4,
+    marginBottom: 3,
   },
   certIssuer: {
     fontSize: 7,
     color: '#64748b',
-    marginTop: 3,
-    lineHeight: 1.3,
+    marginTop: 4,
+    lineHeight: 1.4,
   },
   projectItem: {
-    marginBottom: 12,
+    marginBottom: 14,
     paddingLeft: 12,
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingRight: 4,
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingRight: 8,
     borderLeft: '2 solid #34d399',
+    flexWrap: 'wrap',
   },
   projectTitle: {
     fontSize: 9,
@@ -158,9 +165,10 @@ const styles = StyleSheet.create({
     fontSize: 7,
     color: '#475569',
     marginTop: 3,
-    marginBottom: 3,
-    lineHeight: 1.5,
+    marginBottom: 4,
+    lineHeight: 1.6,
     textAlign: 'justify',
+    flexWrap: 'wrap',
   },
   projectTech: {
     fontSize: 6,
@@ -221,8 +229,9 @@ const PDFDocument = () => (
               <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
               {Array.isArray(exp.description) ? (
                 exp.description.map((desc, i) => (
-                  <View key={i} style={{ marginBottom: 4 }}>
-                    <Text style={styles.expDesc}>• {desc}</Text>
+                  <View key={i} style={styles.bulletItem}>
+                    <Text style={{ fontSize: 7, color: '#475569', marginRight: 4 }}>•</Text>
+                    <Text style={styles.expDesc}>{desc}</Text>
                   </View>
                 ))
               ) : (
