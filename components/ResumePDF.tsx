@@ -47,11 +47,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 10,
-    paddingBottom: 5,
+    marginBottom: 12,
+    paddingBottom: 6,
     borderBottom: '2 solid #34d399',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
+    lineHeight: 1.3,
   },
   contactItem: {
     fontSize: 8,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
   skillItem: {
     fontSize: 8,
     color: '#cbd5e1',
-    marginBottom: 3,
+    marginBottom: 4,
     paddingLeft: 4,
     lineHeight: 1.4,
   },
@@ -84,73 +85,86 @@ const styles = StyleSheet.create({
     borderBottom: '1 solid #e2e8f0',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
+    lineHeight: 1.3,
   },
   experienceItem: {
-    marginBottom: 12,
+    marginBottom: 14,
   },
   expHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 3,
+    marginBottom: 4,
   },
   expTitle: {
     fontSize: 9,
     fontWeight: 'bold',
     color: '#0f172a',
     flex: 1,
+    lineHeight: 1.3,
   },
   expDate: {
     fontSize: 7,
     color: '#64748b',
     marginLeft: 8,
     fontWeight: 'medium',
+    lineHeight: 1.3,
   },
   expCompany: {
     fontSize: 8,
     color: '#059669',
-    marginBottom: 3,
+    marginBottom: 4,
     fontWeight: 'medium',
+    lineHeight: 1.3,
   },
   expDesc: {
     fontSize: 7,
     color: '#475569',
-    marginBottom: 2,
-    lineHeight: 1.3,
+    marginBottom: 4,
+    lineHeight: 1.4,
   },
   certItem: {
-    marginBottom: 8,
+    marginBottom: 10,
   },
   certName: {
     fontSize: 8,
     fontWeight: 'bold',
     color: '#0f172a',
+    lineHeight: 1.3,
   },
   certIssuer: {
     fontSize: 7,
     color: '#64748b',
-    marginTop: 1,
+    marginTop: 2,
+    lineHeight: 1.3,
   },
   projectItem: {
-    marginBottom: 10,
-    paddingLeft: 8,
+    marginBottom: 12,
+    paddingLeft: 10,
+    paddingTop: 2,
+    paddingBottom: 2,
     borderLeft: '2 solid #34d399',
   },
   projectTitle: {
     fontSize: 9,
     fontWeight: 'bold',
     color: '#0f172a',
+    marginBottom: 2,
+    lineHeight: 1.3,
   },
   projectDesc: {
     fontSize: 7,
     color: '#475569',
-    marginTop: 2,
-    lineHeight: 1.3,
+    marginTop: 3,
+    marginBottom: 3,
+    lineHeight: 1.4,
   },
   projectTech: {
     fontSize: 6,
     color: '#64748b',
     marginTop: 2,
+    marginBottom: 2,
+    lineHeight: 1.3,
     fontWeight: 'medium',
   },
 })
@@ -176,7 +190,7 @@ const PDFDocument = () => (
           <Text style={styles.sidebarSectionTitle}>Skills</Text>
           {skillCategories.map((category, catIndex) => (
             <View key={catIndex} style={{ marginBottom: 6 }}>
-              <Text style={{ fontSize: 7, color: '#34d399', fontWeight: 'bold', marginBottom: 2 }}>
+              <Text style={{ fontSize: 8, color: '#34d399', fontWeight: 'bold', marginBottom: 3, lineHeight: 1.3 }}>
                 {category.category}
               </Text>
               {category.skills.map((skill, skillIndex) => (
