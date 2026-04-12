@@ -1,7 +1,7 @@
 'use client'
 
 import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer'
-import { profile, skills } from '@/data/profile'
+import { profile, skillCategories } from '@/data/profile'
 import { experiences } from '@/data/experience'
 import { projects } from '@/data/projects'
 import { certifications } from '@/data/certifications'
@@ -10,149 +10,163 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     fontFamily: 'Helvetica',
-    fontSize: 8,
-    lineHeight: 1.2,
+    fontSize: 9,
+    lineHeight: 1.3,
     backgroundColor: '#ffffff',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
   sidebar: {
-    width: '32%',
+    width: '30%',
     backgroundColor: '#0f172a',
-    padding: 15,
+    backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+    padding: 20,
     height: '100%',
   },
   main: {
-    width: '68%',
-    padding: 18,
+    width: '70%',
+    padding: 20,
     backgroundColor: '#ffffff',
     height: '100%',
   },
   sidebarName: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   sidebarTitle: {
-    fontSize: 8,
+    fontSize: 10,
     color: '#34d399',
-    marginBottom: 20,
+    marginBottom: 24,
+    fontWeight: 'medium',
   },
   sidebarSection: {
     marginBottom: 14,
   },
   sidebarSectionTitle: {
-    fontSize: 9,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 6,
-    paddingBottom: 3,
-    borderBottom: '1 dashed #334155',
-  },
-  contactItem: {
-    fontSize: 7,
-    color: '#94a3b8',
-    marginBottom: 3,
-  },
-  skillItem: {
-    fontSize: 7,
-    color: '#cbd5e1',
-    marginBottom: 2,
-    paddingLeft: 4,
-  },
-  summaryText: {
-    fontSize: 8,
-    color: '#475569',
-    textAlign: 'justify',
-    lineHeight: 1.3,
-  },
-  section: {
-    marginBottom: 12,
-  },
-  sectionTitle: {
     fontSize: 10,
     fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 12,
+    paddingBottom: 6,
+    borderBottom: '2 solid #34d399',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    lineHeight: 1.3,
+  },
+  contactItem: {
+    fontSize: 8,
+    color: '#cbd5e1',
+    marginBottom: 4,
+    lineHeight: 1.4,
+  },
+  skillItem: {
+    fontSize: 8,
+    color: '#cbd5e1',
+    marginBottom: 4,
+    paddingLeft: 4,
+    lineHeight: 1.4,
+  },
+  summaryText: {
+    fontSize: 9,
+    color: '#475569',
+    textAlign: 'justify',
+    lineHeight: 1.5,
+    marginBottom: 12,
+  },
+  section: {
+    marginBottom: 28,
+  },
+  sectionTitle: {
+    fontSize: 12,
+    fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 6,
-    paddingBottom: 2,
-    borderBottom: '1 dashed #cbd5e1',
+    marginBottom: 16,
+    paddingBottom: 10,
+    borderBottom: '1 solid #e2e8f0',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    lineHeight: 1.4,
   },
   experienceItem: {
-    marginBottom: 8,
+    marginBottom: 20,
   },
-  expHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    marginBottom: 1,
-  },
+
   expTitle: {
-    fontSize: 8,
+    fontSize: 9,
     fontWeight: 'bold',
     color: '#0f172a',
     flex: 1,
+    lineHeight: 1.3,
   },
   expDate: {
-    fontSize: 6,
+    fontSize: 7,
     color: '#64748b',
-    marginLeft: 6,
+    marginLeft: 8,
+    fontWeight: 'medium',
+    lineHeight: 1.3,
   },
   expCompany: {
-    fontSize: 7,
+    fontSize: 8,
     color: '#059669',
-    marginBottom: 2,
+    fontWeight: 'medium',
+    lineHeight: 1.4,
+    marginBottom: 6,
   },
   expDesc: {
-    fontSize: 6,
+    fontSize: 7,
     color: '#475569',
-    marginBottom: 1,
-    lineHeight: 1.2,
-  },
-  techContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 2,
-  },
-  techItem: {
-    fontSize: 5,
-    backgroundColor: '#f1f5f9',
-    color: '#64748b',
-    padding: '1 3',
-    marginRight: 2,
-    marginBottom: 1,
-    borderRadius: 1,
+    lineHeight: 1.4,
+    textAlign: 'justify',
+    marginBottom: 6,
   },
   certItem: {
-    marginBottom: 4,
+    marginBottom: 10,
   },
   certName: {
-    fontSize: 7,
-    fontWeight: 'bold',
-    color: '#0f172a',
-  },
-  certIssuer: {
-    fontSize: 6,
-    color: '#64748b',
-  },
-  projectItem: {
-    marginBottom: 6,
-    paddingLeft: 6,
-    borderLeft: '2 solid #34d399',
-  },
-  projectTitle: {
     fontSize: 8,
     fontWeight: 'bold',
     color: '#0f172a',
+    lineHeight: 1.4,
+    marginBottom: 3,
+  },
+  certIssuer: {
+    fontSize: 7,
+    color: '#64748b',
+    lineHeight: 1.4,
+    marginTop: 4,
+  },
+  projectItem: {
+    marginBottom: 14,
+    paddingLeft: 12,
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingRight: 8,
+    borderLeft: '2 solid #34d399',
+    flexWrap: 'wrap',
+  },
+  projectTitle: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: '#0f172a',
+    marginBottom: 4,
+    lineHeight: 1.3,
   },
   projectDesc: {
-    fontSize: 6,
+    fontSize: 7,
     color: '#475569',
-    marginTop: 1,
-    lineHeight: 1.2,
+    lineHeight: 1.6,
+    textAlign: 'justify',
+    marginTop: 3,
+    marginBottom: 4,
   },
   projectTech: {
-    fontSize: 5,
+    fontSize: 6,
     color: '#64748b',
-    marginTop: 1,
+    marginTop: 4,
+    marginBottom: 2,
+    lineHeight: 1.3,
+    fontWeight: 'medium',
   },
 })
 
@@ -170,13 +184,20 @@ const PDFDocument = () => (
           <Text style={styles.contactItem}>{profile.email}</Text>
           <Text style={styles.contactItem}>{profile.phone}</Text>
           <Text style={styles.contactItem}>{profile.location}</Text>
-          <Text style={styles.contactItem}>LinkedIn</Text>
+          <Text style={styles.contactItem}>{profile.linkedin}</Text>
         </View>
 
         <View style={styles.sidebarSection}>
           <Text style={styles.sidebarSectionTitle}>Skills</Text>
-          {skills.map((skill, index) => (
-            <Text key={index} style={styles.skillItem}>• {skill}</Text>
+          {skillCategories.map((category, catIndex) => (
+            <View key={catIndex} style={{ marginBottom: 6 }}>
+              <Text style={{ fontSize: 8, color: '#34d399', fontWeight: 'bold', marginBottom: 3, lineHeight: 1.3 }}>
+                {category.category}
+              </Text>
+              {category.skills.map((skill, skillIndex) => (
+                <Text key={skillIndex} style={styles.skillItem}>• {skill}</Text>
+              ))}
+            </View>
           ))}
         </View>
       </View>
@@ -191,24 +212,19 @@ const PDFDocument = () => (
           <Text style={styles.sectionTitle}>Experience</Text>
           {experiences.map((exp) => (
             <View key={exp.id} style={styles.experienceItem}>
-              <View style={styles.expHeader}>
-                <Text style={styles.expTitle}>{exp.position}</Text>
-                <Text style={styles.expDate}>{exp.startDate} - {exp.endDate || 'Present'}</Text>
-              </View>
+              {/* Position and date on one line */}
+              <Text style={styles.expTitle}>
+                {exp.position}  {exp.startDate} - {exp.endDate || 'Present'}
+              </Text>
+              {/* Company on next line */}
               <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
+              {/* Bullet points - each as separate Text with bullet character */}
               {Array.isArray(exp.description) ? (
                 exp.description.map((desc, i) => (
                   <Text key={i} style={styles.expDesc}>• {desc}</Text>
                 ))
               ) : (
                 <Text style={styles.expDesc}>{exp.description}</Text>
-              )}
-              {exp.technologies.length > 0 && (
-                <View style={styles.techContainer}>
-                  {exp.technologies.map((tech, i) => (
-                    <Text key={i} style={styles.techItem}>{tech}</Text>
-                  ))}
-                </View>
               )}
             </View>
           ))}

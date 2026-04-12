@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { profile, skills } from '@/data/profile'
+import { profile, skillCategories } from '@/data/profile'
 import DownloadCV from './DownloadCV'
 
 export default function About() {
@@ -37,19 +37,26 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <h3 className="font-semibold mb-4">Skills</h3>
-            <div className="flex flex-wrap gap-2">
-              {skills.map((skill, index) => (
-                <motion.span
-                  key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
-                  className="px-3 py-1.5 text-sm bg-secondary rounded-lg"
-                >
-                  {skill}
-                </motion.span>
+            <h3 className="font-semibold mb-6">Skills</h3>
+            <div className="space-y-6">
+              {skillCategories.map((category, catIndex) => (
+                <div key={catIndex}>
+                  <h4 className="font-medium text-emerald-500 mb-2">{category.category}</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.span
+                        key={skill}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: (catIndex * 0.1) + (skillIndex * 0.05) }}
+                        className="px-3 py-1.5 text-sm bg-secondary rounded-lg"
+                      >
+                        {skill}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </motion.div>
