@@ -73,26 +73,26 @@ const styles = StyleSheet.create({
     lineHeight: 1.4,
   },
   section: {
-    marginBottom: 16,
+    marginBottom: 20,
   },
   sectionTitle: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 10,
-    paddingBottom: 4,
-    borderBottom: '2 solid #34d399',
+    marginBottom: 12,
+    paddingBottom: 6,
+    borderBottom: '1 solid #e2e8f0',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
   experienceItem: {
-    marginBottom: 8,
+    marginBottom: 12,
   },
   expHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 1,
+    marginBottom: 3,
   },
   expTitle: {
     fontSize: 9,
@@ -118,24 +118,8 @@ const styles = StyleSheet.create({
     marginBottom: 2,
     lineHeight: 1.3,
   },
-  techContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginTop: 2,
-  },
-  techItem: {
-    fontSize: 6,
-    backgroundColor: '#f0f9ff',
-    color: '#0369a1',
-    padding: '2 5',
-    marginRight: 3,
-    marginBottom: 3,
-    borderRadius: 3,
-    fontWeight: 'medium',
-    border: '1 solid #bae6fd',
-  },
   certItem: {
-    marginBottom: 6,
+    marginBottom: 8,
   },
   certName: {
     fontSize: 8,
@@ -148,7 +132,7 @@ const styles = StyleSheet.create({
     marginTop: 1,
   },
   projectItem: {
-    marginBottom: 8,
+    marginBottom: 10,
     paddingLeft: 8,
     borderLeft: '2 solid #34d399',
   },
@@ -224,13 +208,6 @@ const PDFDocument = () => (
                 ))
               ) : (
                 <Text style={styles.expDesc}>{exp.description}</Text>
-              )}
-              {exp.technologies.length > 0 && (
-                <View style={styles.techContainer}>
-                  {exp.technologies.map((tech, i) => (
-                    <Text key={i} style={styles.techItem}>{tech}</Text>
-                  ))}
-                </View>
               )}
             </View>
           ))}
