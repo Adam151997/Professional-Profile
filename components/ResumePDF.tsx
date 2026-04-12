@@ -1,7 +1,7 @@
 'use client'
 
 import { Document, Page, Text, View, StyleSheet, pdf } from '@react-pdf/renderer'
-import { profile, skills } from '@/data/profile'
+import { profile, skillCategories } from '@/data/profile'
 import { experiences } from '@/data/experience'
 import { projects } from '@/data/projects'
 import { certifications } from '@/data/certifications'
@@ -10,71 +10,80 @@ const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
     fontFamily: 'Helvetica',
-    fontSize: 8,
-    lineHeight: 1.2,
+    fontSize: 9,
+    lineHeight: 1.3,
     backgroundColor: '#ffffff',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
   },
   sidebar: {
-    width: '32%',
+    width: '30%',
     backgroundColor: '#0f172a',
-    padding: 15,
+    backgroundImage: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+    padding: 20,
     height: '100%',
   },
   main: {
-    width: '68%',
-    padding: 18,
+    width: '70%',
+    padding: 20,
     backgroundColor: '#ffffff',
     height: '100%',
   },
   sidebarName: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#ffffff',
-    marginBottom: 4,
+    marginBottom: 8,
   },
   sidebarTitle: {
-    fontSize: 8,
+    fontSize: 10,
     color: '#34d399',
-    marginBottom: 20,
+    marginBottom: 24,
+    fontWeight: 'medium',
   },
   sidebarSection: {
     marginBottom: 14,
   },
   sidebarSectionTitle: {
-    fontSize: 9,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    marginBottom: 6,
-    paddingBottom: 3,
-    borderBottom: '1 dashed #334155',
-  },
-  contactItem: {
-    fontSize: 7,
-    color: '#94a3b8',
-    marginBottom: 3,
-  },
-  skillItem: {
-    fontSize: 7,
-    color: '#cbd5e1',
-    marginBottom: 2,
-    paddingLeft: 4,
-  },
-  summaryText: {
-    fontSize: 8,
-    color: '#475569',
-    textAlign: 'justify',
-    lineHeight: 1.3,
-  },
-  section: {
-    marginBottom: 12,
-  },
-  sectionTitle: {
     fontSize: 10,
     fontWeight: 'bold',
+    color: '#ffffff',
+    marginBottom: 10,
+    paddingBottom: 5,
+    borderBottom: '2 solid #34d399',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  contactItem: {
+    fontSize: 8,
+    color: '#cbd5e1',
+    marginBottom: 4,
+    lineHeight: 1.4,
+  },
+  skillItem: {
+    fontSize: 8,
+    color: '#cbd5e1',
+    marginBottom: 3,
+    paddingLeft: 4,
+    lineHeight: 1.4,
+  },
+  summaryText: {
+    fontSize: 9,
+    color: '#475569',
+    textAlign: 'justify',
+    lineHeight: 1.4,
+  },
+  section: {
+    marginBottom: 16,
+  },
+  sectionTitle: {
+    fontSize: 12,
+    fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 6,
-    paddingBottom: 2,
-    borderBottom: '1 dashed #cbd5e1',
+    marginBottom: 10,
+    paddingBottom: 4,
+    borderBottom: '2 solid #34d399',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   experienceItem: {
     marginBottom: 8,
@@ -86,26 +95,28 @@ const styles = StyleSheet.create({
     marginBottom: 1,
   },
   expTitle: {
-    fontSize: 8,
+    fontSize: 9,
     fontWeight: 'bold',
     color: '#0f172a',
     flex: 1,
   },
   expDate: {
-    fontSize: 6,
+    fontSize: 7,
     color: '#64748b',
-    marginLeft: 6,
+    marginLeft: 8,
+    fontWeight: 'medium',
   },
   expCompany: {
-    fontSize: 7,
+    fontSize: 8,
     color: '#059669',
-    marginBottom: 2,
+    marginBottom: 3,
+    fontWeight: 'medium',
   },
   expDesc: {
-    fontSize: 6,
+    fontSize: 7,
     color: '#475569',
-    marginBottom: 1,
-    lineHeight: 1.2,
+    marginBottom: 2,
+    lineHeight: 1.3,
   },
   techContainer: {
     flexDirection: 'row',
@@ -113,46 +124,50 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
   techItem: {
-    fontSize: 5,
-    backgroundColor: '#f1f5f9',
-    color: '#64748b',
-    padding: '1 3',
-    marginRight: 2,
-    marginBottom: 1,
-    borderRadius: 1,
+    fontSize: 6,
+    backgroundColor: '#f0f9ff',
+    color: '#0369a1',
+    padding: '2 5',
+    marginRight: 3,
+    marginBottom: 3,
+    borderRadius: 3,
+    fontWeight: 'medium',
+    border: '1 solid #bae6fd',
   },
   certItem: {
-    marginBottom: 4,
+    marginBottom: 6,
   },
   certName: {
-    fontSize: 7,
-    fontWeight: 'bold',
-    color: '#0f172a',
-  },
-  certIssuer: {
-    fontSize: 6,
-    color: '#64748b',
-  },
-  projectItem: {
-    marginBottom: 6,
-    paddingLeft: 6,
-    borderLeft: '2 solid #34d399',
-  },
-  projectTitle: {
     fontSize: 8,
     fontWeight: 'bold',
     color: '#0f172a',
   },
-  projectDesc: {
-    fontSize: 6,
-    color: '#475569',
-    marginTop: 1,
-    lineHeight: 1.2,
-  },
-  projectTech: {
-    fontSize: 5,
+  certIssuer: {
+    fontSize: 7,
     color: '#64748b',
     marginTop: 1,
+  },
+  projectItem: {
+    marginBottom: 8,
+    paddingLeft: 8,
+    borderLeft: '2 solid #34d399',
+  },
+  projectTitle: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    color: '#0f172a',
+  },
+  projectDesc: {
+    fontSize: 7,
+    color: '#475569',
+    marginTop: 2,
+    lineHeight: 1.3,
+  },
+  projectTech: {
+    fontSize: 6,
+    color: '#64748b',
+    marginTop: 2,
+    fontWeight: 'medium',
   },
 })
 
@@ -170,13 +185,20 @@ const PDFDocument = () => (
           <Text style={styles.contactItem}>{profile.email}</Text>
           <Text style={styles.contactItem}>{profile.phone}</Text>
           <Text style={styles.contactItem}>{profile.location}</Text>
-          <Text style={styles.contactItem}>LinkedIn</Text>
+          <Text style={styles.contactItem}>{profile.linkedin}</Text>
         </View>
 
         <View style={styles.sidebarSection}>
           <Text style={styles.sidebarSectionTitle}>Skills</Text>
-          {skills.map((skill, index) => (
-            <Text key={index} style={styles.skillItem}>• {skill}</Text>
+          {skillCategories.map((category, catIndex) => (
+            <View key={catIndex} style={{ marginBottom: 6 }}>
+              <Text style={{ fontSize: 7, color: '#34d399', fontWeight: 'bold', marginBottom: 2 }}>
+                {category.category}
+              </Text>
+              {category.skills.map((skill, skillIndex) => (
+                <Text key={skillIndex} style={styles.skillItem}>• {skill}</Text>
+              ))}
+            </View>
           ))}
         </View>
       </View>

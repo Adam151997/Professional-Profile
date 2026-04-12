@@ -24,20 +24,43 @@ export const profile: Profile = {
   avatar: '/avatar.jpg',
 };
 
-export const skills = [
-  'Market Research & Analysis',
-  'Data Analysis & Interpretation',
-  'Lead Generation & Qualification',
-  'Sales Strategy & Negotiation',
-  'Sales Closing',
-  'Account & Relationship Management',
-  'Client Acquisition & Retention',
-  'Pipeline Development',
-  'CRM Management (Salesforce, HubSpot, Zoho)',
-  'Lead Generation Tools (zoominfo, Lusha, Seamless AI)',
-  'AI Tools Orchestration',
-  'Database Management',
-  'AI Workflow Automation',
-  'Strategic Planning',
-  'Go-to-Market Strategy',
+export interface SkillCategory {
+  category: string;
+  skills: string[];
+}
+
+export const skillCategories: SkillCategory[] = [
+  {
+    category: 'Sales & Business Development',
+    skills: [
+      'Sales Strategy & Negotiation',
+      'Sales Closing',
+      'Account & Relationship Management',
+      'Client Acquisition & Retention',
+      'Pipeline Development',
+      'Go-to-Market Strategy',
+    ]
+  },
+  {
+    category: 'Market Research & Analysis',
+    skills: [
+      'Market Research & Analysis',
+      'Data Analysis & Interpretation',
+      'Lead Generation & Qualification',
+      'Strategic Planning',
+    ]
+  },
+  {
+    category: 'Technology & Tools',
+    skills: [
+      'CRM Management (Salesforce, HubSpot, Zoho)',
+      'Lead Generation Tools (zoominfo, Lusha, Seamless AI)',
+      'AI Tools Orchestration',
+      'Database Management',
+      'AI Workflow Automation',
+    ]
+  }
 ];
+
+// Legacy skills array for backward compatibility
+export const skills = skillCategories.flatMap(category => category.skills);
