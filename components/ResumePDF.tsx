@@ -72,16 +72,17 @@ const styles = StyleSheet.create({
     color: '#475569',
     textAlign: 'justify',
     lineHeight: 1.4,
+    marginBottom: 8,
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 24,
   },
   sectionTitle: {
     fontSize: 12,
     fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 12,
-    paddingBottom: 6,
+    marginBottom: 14,
+    paddingBottom: 8,
     borderBottom: '1 solid #e2e8f0',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
@@ -120,7 +121,6 @@ const styles = StyleSheet.create({
   expDesc: {
     fontSize: 7,
     color: '#475569',
-    marginBottom: 4,
     lineHeight: 1.4,
   },
   certItem: {
@@ -131,18 +131,20 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#0f172a',
     lineHeight: 1.3,
+    marginBottom: 2,
   },
   certIssuer: {
     fontSize: 7,
     color: '#64748b',
-    marginTop: 2,
+    marginTop: 3,
     lineHeight: 1.3,
   },
   projectItem: {
     marginBottom: 12,
-    paddingLeft: 10,
-    paddingTop: 2,
-    paddingBottom: 2,
+    paddingLeft: 12,
+    paddingTop: 4,
+    paddingBottom: 4,
+    paddingRight: 4,
     borderLeft: '2 solid #34d399',
   },
   projectTitle: {
@@ -157,7 +159,8 @@ const styles = StyleSheet.create({
     color: '#475569',
     marginTop: 3,
     marginBottom: 3,
-    lineHeight: 1.4,
+    lineHeight: 1.5,
+    textAlign: 'justify',
   },
   projectTech: {
     fontSize: 6,
@@ -218,7 +221,9 @@ const PDFDocument = () => (
               <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
               {Array.isArray(exp.description) ? (
                 exp.description.map((desc, i) => (
-                  <Text key={i} style={styles.expDesc}>• {desc}</Text>
+                  <View key={i} style={{ marginBottom: 4 }}>
+                    <Text style={styles.expDesc}>• {desc}</Text>
+                  </View>
                 ))
               ) : (
                 <Text style={styles.expDesc}>{exp.description}</Text>
