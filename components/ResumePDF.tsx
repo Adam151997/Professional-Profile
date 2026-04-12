@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
   expCompany: {
     fontSize: 8,
     color: '#059669',
-    marginBottom: 6,
     fontWeight: 'medium',
     lineHeight: 1.4,
   },
@@ -123,11 +122,7 @@ const styles = StyleSheet.create({
     color: '#475569',
     lineHeight: 1.4,
     textAlign: 'justify',
-    flexWrap: 'wrap',
-  },
-  bulletItem: {
-    marginBottom: 6,
-    flexDirection: 'row',
+    marginBottom: 4,
   },
   certItem: {
     marginBottom: 10,
@@ -142,7 +137,6 @@ const styles = StyleSheet.create({
   certIssuer: {
     fontSize: 7,
     color: '#64748b',
-    marginTop: 4,
     lineHeight: 1.4,
   },
   projectItem: {
@@ -158,22 +152,19 @@ const styles = StyleSheet.create({
     fontSize: 9,
     fontWeight: 'bold',
     color: '#0f172a',
-    marginBottom: 2,
+    marginBottom: 4,
     lineHeight: 1.3,
   },
   projectDesc: {
     fontSize: 7,
     color: '#475569',
-    marginTop: 3,
-    marginBottom: 4,
     lineHeight: 1.6,
     textAlign: 'justify',
-    flexWrap: 'wrap',
   },
   projectTech: {
     fontSize: 6,
     color: '#64748b',
-    marginTop: 2,
+    marginTop: 4,
     marginBottom: 2,
     lineHeight: 1.3,
     fontWeight: 'medium',
@@ -222,17 +213,16 @@ const PDFDocument = () => (
           <Text style={styles.sectionTitle}>Experience</Text>
           {experiences.map((exp) => (
             <View key={exp.id} style={styles.experienceItem}>
-              <View style={styles.expHeader}>
-                <Text style={styles.expTitle}>{exp.position}</Text>
-                <Text style={styles.expDate}>{exp.startDate} - {exp.endDate || 'Present'}</Text>
-              </View>
-              <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
+              {/* Combine position, date, company into single Text with line breaks */}
+              <Text style={styles.expTitle}>
+                {exp.position}  {exp.startDate} - {exp.endDate || 'Present'}
+                {'\\n'}
+                <Text style={styles.expCompany}>{exp.company} | {exp.location}</Text>
+              </Text>
+              {/* Bullet points - each as separate Text with bullet character */}
               {Array.isArray(exp.description) ? (
                 exp.description.map((desc, i) => (
-                  <View key={i} style={styles.bulletItem}>
-                    <Text style={{ fontSize: 7, color: '#475569', marginRight: 4 }}>•</Text>
-                    <Text style={styles.expDesc}>{desc}</Text>
-                  </View>
+                  <Text key={i} style={styles.expDesc}>• {desc}</Text>
                 ))
               ) : (
                 <Text style={styles.expDesc}>{exp.description}</Text>
@@ -246,8 +236,11 @@ const PDFDocument = () => (
             <Text style={styles.sectionTitle}>Certifications</Text>
             {certifications.map((cert) => (
               <View key={cert.id} style={styles.certItem}>
-                <Text style={styles.certName}>{cert.name}</Text>
-                <Text style={styles.certIssuer}>{cert.issuer} | {cert.date}</Text>
+                <Text style={styles.certName}>
+                  {cert.name}
+                  {'\\n'}
+                  <Text style={styles.certIssuer}>{cert.issuer} | {cert.date}</Text>
+                </Text>
               </View>
             ))}
           </View>
@@ -258,8 +251,11 @@ const PDFDocument = () => (
             <Text style={styles.sectionTitle}>Featured Projects</Text>
             {projects.map((project) => (
               <View key={project.id} style={styles.projectItem}>
-                <Text style={styles.projectTitle}>{project.title}</Text>
-                <Text style={styles.projectDesc}>{project.description}</Text>
+                <Text style={styles.projectTitle}>
+                  {project.title}
+                  {'\\n'}
+                  <Text style={styles.projectDesc}>{project.description}</Text>
+                </Text>
                 {project.technologies.length > 0 && (
                   <Text style={styles.projectTech}>Technologies: {project.technologies.join(', ')}</Text>
                 )}
